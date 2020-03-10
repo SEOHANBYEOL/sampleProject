@@ -2,9 +2,9 @@ package vo;
 
 public class SeatVO {
 	private String ageGrade;
-	private int reservationId;
+	private String reservationId;
 	private String seatNumber;
-	private int seatIndex;
+	private String seatIndex;
 	
 	public String getAgeGrade() {
 		return ageGrade;
@@ -12,10 +12,10 @@ public class SeatVO {
 	public void setAgeGrade(String ageGrade) {
 		this.ageGrade = ageGrade;
 	}
-	public int getReservationId() {
+	public String getReservationId() {
 		return reservationId;
 	}
-	public void setReservationId(int reservationId) {
+	public void setReservationId(String reservationId) {
 		this.reservationId = reservationId;
 	}
 	public String getSeatNumber() {
@@ -24,10 +24,10 @@ public class SeatVO {
 	public void setSeatNumber(String seatNumber) {
 		this.seatNumber = seatNumber;
 	}
-	public int getSeatIndex() {
+	public String getSeatIndex() {
 		return seatIndex;
 	}
-	public void setSeatIndex(int seatIndex) {
+	public void setSeatIndex(String seatIndex) {
 		this.seatIndex = seatIndex;
 	}
 }

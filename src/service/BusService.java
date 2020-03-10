@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import vo.BusVO;
+import vo.TimeTableVO;
 import vo.UserVO;
 import dao.BusDao;
 
@@ -22,11 +23,6 @@ private static BusService instance;
 	
 	BusDao busDao = BusDao.getInstance();
 
-	
-	
-	
-	
-	
 	public void BusRegist(){ //버스 등록
 		Scanner s = new Scanner(System.in);
 		String busid = null;
@@ -54,6 +50,24 @@ private static BusService instance;
 		System.out.println("버스 등록완료 되었습니다.");	
 	}
 
+	
+	
+	public void Busdelete(){ // 버스삭제
+		ArrayList<BusVO> busList = busDao.selectBusList();
+		
+		Scanner s = new Scanner(System.in);
+		System.out.println("삭제할 인덱스번호를 입력해주세요.");
+		for(int i=0; i<busList.size(); i++){
+			BusVO bus = busList.get(i);
+			System.out.println(i + "."+bus.getBusId());
+		}
+		int index = Integer.parseInt(s.nextLine());
+		
+		BusVO bus = busList.get(index);
+		busDao.deleteBus(bus);
+		
+		
+	}
 	
 	
 	

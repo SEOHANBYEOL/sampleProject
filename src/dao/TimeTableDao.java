@@ -27,6 +27,10 @@ private static TimeTableDao instance;
 		database.tb_timetable.add(timetable);
 	}
 	
+	public void deleteTimetable(TimeTableVO timetable){
+		database.tb_timetable.remove(timetable);
+	}
+	
 	public TimeTableVO selectTimeTable(HashMap<String, String> param) {
 		TimeTableVO rtnTimeTable = null;
 		for(int i=0; i<database.tb_timetable.size(); i++){
@@ -34,16 +38,16 @@ private static TimeTableDao instance;
 			boolean flag = true;
 			for(String key : param.keySet()){
 				String value = param.get(key);
-				if(key.equals("TIMETABLEID")){
-					if(!Integer.toString(TimeTable.getTimeTableId()).equals(value)) flag = false;
-				}else if(key.equals("STARTPOINT")){
+				if(key.equals("timeTableId")){
+					if(!(TimeTable.getTimeTableId()).equals(value)) flag = false;
+				}else if(key.equals("startPoint")){
 					if(!(TimeTable.getStartPoint()).equals(value)) flag = false;
-				}else if(key.equals("ENDPOINT")){
+				}else if(key.equals("endPoint")){
 					if(!(TimeTable.getEndPoint()).equals(value)) flag = false;
-				}else if(key.equals("TIME")){
+				}else if(key.equals("time")){
 					if(!(TimeTable.getTime()).equals(value)) flag = false;
-				}else if(key.equals("BUSID")){
-					if(!Integer.toString(TimeTable.getBusId()).equals(value)) flag = false;
+				}else if(key.equals("busId")){
+					if(!(TimeTable.getBusId()).equals(value)) flag = false;
 				}
 			}
 			if(flag) rtnTimeTable = TimeTable;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import vo.BusVO;
+import vo.TimeTableVO;
 import data.Database;
 
 public class BusDao {
@@ -25,6 +26,12 @@ private static BusDao instance;
 	public void insertBus(BusVO bus){
 		database.tb_bus.add(bus);
 	}
+	
+	public void deleteBus(BusVO bus){
+		database.tb_bus.remove(bus);
+	}
+	
+	
 
 	
 	public BusVO selectBus(HashMap<String, String> param) {

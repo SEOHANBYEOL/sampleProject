@@ -25,30 +25,12 @@ public class UserService {
 	
 	//회원가입
 	public void join(){
-		/*Scanner s = new Scanner(System.in);
-		System.out.println("아이디 : ");
-		String id = s.nextLine(); 
-		System.out.println("비밀번호 : ");
-		String password = s.nextLine();
-		System.out.println("이름 : ");
-		String name = s.nextLine();
-		
-		UserVO user = new UserVO();
-		
-		user.setId(id);
-		user.setPassword(password);
-		user.setName(name);
-		
-		userDao.insertUser(user);
-		System.out.println("가입해주셔서 감사합니다.");*/
-		
-		
-		Scanner s = new Scanner(System.in);
-		
+
+		Scanner s = new Scanner(System.in);	
 		String id = null;
 		UserVO idCheck = null;
 		
-		do{			
+		do{//아이디 중복 체크
 			System.out.println("아이디 : ");
 			id = s.nextLine();
 			
@@ -114,4 +96,31 @@ public class UserService {
 		}
 		System.out.println("-------------------------------");
 	}
+	
+	//회원 삭제
+	public void Userdelete(){
+		ArrayList<UserVO> userList = userDao.selectUserList();
+		
+			Scanner s = new Scanner(System.in);
+			System.out.println("삭제할 인덱스번호를 입력해주세요.");
+			for(int i=0; i<userList.size(); i++){
+				UserVO user = userList.get(i);
+				System.out.println(i + "."+user.getId());
+		}
+		
+		int index = Integer.parseInt(s.nextLine());
+		
+		UserVO user = userList.get(index);
+		userDao.deleteUser(user);
+		
+		
+	}
+	
+	//로그아웃
+	public void logOut(){
+		System.out.println("로그아웃 성공!");
+		Session.loginUser = null;
+	}
+	
+	
 }

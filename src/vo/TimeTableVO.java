@@ -1,15 +1,16 @@
 package vo;
 
 public class TimeTableVO {
-	private int timeTableId;
+	private String timeTableId;
 	private String startPoint;
 	private String endPoint;
 	private String time;
-	private int busId;
-	public int getTimeTableId() {
+	private String busId;
+	
+	public String getTimeTableId() {
 		return timeTableId;
 	}
-	public void setTimeTableId(int timeTableId) {
+	public void setTimeTableId(String timeTableId) {
 		this.timeTableId = timeTableId;
 	}
 	public String getStartPoint() {
@@ -30,10 +31,10 @@ public class TimeTableVO {
 	public void setTime(String time) {
 		this.time = time;
 	}
-	public int getBusId() {
+	public String getBusId() {
 		return busId;
 	}
-	public void setBusId(int busId) {
+	public void setBusId(String busId) {
 		this.busId = busId;
 	}
 }

@@ -1,18 +1,18 @@
 package vo;
 
 public class ReservationVO {
-	private int timeTableId;
+	private String timeTableId;
 	private String seatNumber;
 	private String userId;
 	private String Date;
 	private int price;
-	private int reservationId;
+	private String reservationId;
 
-	public int getTimeTableId() {
+	public String getTimeTableId() {
 		return timeTableId;
 	}
 
-	public void setTimeTableId(int timeTableId) {
+	public void setTimeTableId(String timeTableId) {
 		this.timeTableId = timeTableId;
 	}
 
@@ -48,11 +48,11 @@ public class ReservationVO {
 		this.price = price;
 	}
 
-	public int getReservationId() {
+	public String getReservationId() {
 		return reservationId;
 	}
 
-	public void setReservationId(int reservationId) {
+	public void setReservationId(String reservationId) {
 		this.reservationId = reservationId;
 	}
 }

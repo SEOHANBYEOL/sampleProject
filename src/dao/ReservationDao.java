@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import vo.ReservationVO;
+import vo.UserVO;
 import data.Database;
 
 public class ReservationDao {
@@ -23,11 +24,13 @@ private ReservationDao(){}
 	Database database = Database.getInstance();
 	
 	
-	public void insertUser(ReservationVO reservation){
+	public void insertReservation(ReservationVO reservation){
 		database.tb_reservation.add(reservation);
 	}
 	
-	
+	public void deleteReservation(ReservationVO reservation){
+		database.tb_reservation.remove(reservation);
+	}
 	
 	
 	public ReservationVO selectReservation(HashMap<String, String> param) {
@@ -38,7 +41,7 @@ private ReservationDao(){}
 			for(String key : param.keySet()){
 				String value = param.get(key);
 				if(key.equals("TIMETABLEID")){
-					if(!Integer.toString(reservation.getTimeTableId()).equals(value)) flag = false;
+					if(!(reservation.getTimeTableId()).equals(value)) flag = false;
 				}else if(key.equals("SEATNUMBER")){
 					if(!reservation.getSeatNumber().equals(value)) flag = false;
 				}else if(key.equals("USERID")){
@@ -48,7 +51,7 @@ private ReservationDao(){}
 				}else if(key.equals("PRICE")){
 					if(!Integer.toString(reservation.getPrice()).equals(value)) flag = false;
 				}else if(key.equals("RESERVATIONID")){
-					if(!Integer.toString(reservation.getReservationId()).equals(value)) flag = false;
+					if(!(reservation.getReservationId()).equals(value)) flag = false;
 				}
 			}
 			if(flag) rtnReservation = reservation;
@@ -56,7 +59,7 @@ private ReservationDao(){}
 		return rtnReservation;
 	}
 
-	public ArrayList<ReservationVO> selectUserList(){
+	public ArrayList<ReservationVO> selectReservationList(){//2020_03_09수정 byHB.S (selectReservationList메소드명변경 오타라서..)
 		return database.tb_reservation;
 	}
 

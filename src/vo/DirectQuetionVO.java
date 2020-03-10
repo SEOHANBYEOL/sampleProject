@@ -1,47 +1,86 @@
 package vo;
 
-public class NoticeVO {
-	public static int indexNum = 0;
+public class DirectQuetionVO {
 	private int index;
 	private String title;
 	private String text;
 	private String date;
-	private String userId = "admin";
+	private String userId;
+	private boolean answer = true;
 	
-	public NoticeVO(){
-		indexNum++;
-		index = indexNum;
+	public boolean getAnswer() {
+		return answer;
 	}
-	
-	public void setIndex(int index){
-		this.index = index;
+
+
+
+	public void setAnswer(boolean answer) {
+		this.answer = answer;
 	}
-	
+
+
+
 	public int getIndex() {
 		return index;
 	}
+
+
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+
+
 	public String getTitle() {
 		return title;
 	}
+
+
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+
+
 	public String getText() {
 		return text;
 	}
+
+
+
 	public void setText(String text) {
 		this.text = text;
 	}
+
+
+
 	public String getDate() {
 		return date;
 	}
+
+
+
 	public void setDate(String date) {
 		this.date = date;
 	}
+
+
+
 	public String getUserId() {
-		return this.userId;
+		return userId;
 	}
-	/*public void setUserId(String userId) {
+
+
+
+	public void setUserId(String userId) {
 		this.userId = userId;
-	}*/
+	}
+
+
+
+
+	
+
 }

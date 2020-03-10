@@ -28,7 +28,9 @@ private static UserDao instance;
 		database.tb_user.add(user);
 	}
 
-	
+	public void deleteUser(UserVO user){
+		database.tb_user.remove(user);
+	}
 
 	public UserVO selectUser(HashMap<String, String> param) {
 		UserVO rtnUser = null;
@@ -43,9 +45,7 @@ private static UserDao instance;
 					if(!user.getPassword().equals(value)) flag = false;
 				}else if(key.equals("NAME")){
 					if(!user.getName().equals(value)) flag = false;
-				}//else{
-				//flag = false;
-				//}
+				}
 			}
 			if(flag) rtnUser = user;
 		}

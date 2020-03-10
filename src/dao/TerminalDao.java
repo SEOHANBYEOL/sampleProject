@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import vo.TerminalVO;
+import vo.TimeTableVO;
 import data.Database;
 
 public class TerminalDao {
@@ -24,6 +25,10 @@ private static TerminalDao instance;
 	
 	public void insertTerminal(TerminalVO terminal){
 		database.tb_terminal.add(terminal);
+	}
+	
+	public void deleteTerminal(TerminalVO terminal){
+		database.tb_terminal.remove(terminal);
 	}
 	
 	public TerminalVO selectTerminal(HashMap<String, String> param) {
