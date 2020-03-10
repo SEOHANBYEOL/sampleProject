@@ -134,11 +134,98 @@ private static Database instance;
 					for(int j = 7; j < 22; j++) {
 						TimeTableVO timetable = new TimeTableVO();
 						timetable.setEndPoint(tb_terminal.get(i).getTerminalName());
+						String startTerminal = tb_terminal.get(i).getTerminalName();
 						timetable.setStartPoint(tb_terminal.get(k).getTerminalName());
+						String endTerminal = tb_terminal.get(k).getTerminalName();
 						timetable.setTimeTableId(Integer.toString(count));
 						timetable.setBusId(Integer.toString(count));
 						count++;
+	
+						if(startTerminal.equals("서울")){
+							switch(endTerminal){
+							case "대전":
+								timetable.setPrice(10000);
+								break;
+							case "대구":
+								timetable.setPrice(18000);
+								break;
+							case "부산":
+								timetable.setPrice(24000);
+								break;
+							case "청주": 
+								timetable.setPrice(8000);
+								break;
+							}
+						}
 						
+						if(startTerminal.equals("대전")){
+							switch(endTerminal){
+							case "서울":
+								timetable.setPrice(10000);
+								break;
+							case "대구":
+								timetable.setPrice(14000);
+								break;
+							case "부산":
+								timetable.setPrice(24000);
+								break;
+							case "청주": 
+								timetable.setPrice(5000);
+								break;
+							}
+						}
+						
+						if(startTerminal.equals("대구")){
+							switch(endTerminal){
+							case "서울":
+								timetable.setPrice(18000);
+								break;
+							case "대전":
+								timetable.setPrice(14000);
+								break;
+							case "부산":
+								timetable.setPrice(10000);
+								break;
+							case "청주": 
+								timetable.setPrice(26000);
+								break;
+							}
+						}
+						
+						if(startTerminal.equals("부산")){
+							switch(endTerminal){
+							case "서울":
+								timetable.setPrice(24000);
+								break;
+							case "대전":
+								timetable.setPrice(24000);
+								break;
+							case "대구":
+								timetable.setPrice(10000);
+								break;
+							case "청주": 
+								timetable.setPrice(28000);
+								break;
+							}
+						}
+						
+						if(startTerminal.equals("청주")){
+							switch(endTerminal){
+							case "서울":
+								timetable.setPrice(8000);
+								break;
+							case "대전":
+								timetable.setPrice(5000);
+								break;
+							case "대구":
+								timetable.setPrice(26000);
+								break;
+							case "부산": 
+								timetable.setPrice(28000);
+								break;
+							}
+						}
+			
 						if (j < 12) {
 							timetable.setTime(j + ":00" + "am");
 						} else {
@@ -146,12 +233,10 @@ private static Database instance;
 						}
 						tb_timetable.add(timetable);
 					}
-				}
-					
+				}		
 			}
 		}
 			
-		
 		
 		/*int count = 0;
 		

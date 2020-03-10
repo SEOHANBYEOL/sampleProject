@@ -6,6 +6,7 @@ public class TimeTableVO {
 	private String endPoint;
 	private String time;
 	private String busId;
+	private int price;
 	
 	public String getTimeTableId() {
 		return timeTableId;
@@ -36,6 +37,12 @@ public class TimeTableVO {
 	}
 	public void setBusId(String busId) {
 		this.busId = busId;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 }
 	

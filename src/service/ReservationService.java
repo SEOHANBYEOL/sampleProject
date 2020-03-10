@@ -145,6 +145,7 @@ private static ReservationService  instance;
                   reservation.setUserId(Session.loginUser.getId());
                   reservation.setSeatNumber(seatNumber);
                   reservation.setDate(today);
+                  reservation.setPrice(choicePrice(startpoint, endpoint, busGrade));
                   reservationDao.insertReservation(reservation);
                   
                   String seatIndex = timeTable.getBusId()+"_"+seatNumber;
@@ -165,7 +166,24 @@ private static ReservationService  instance;
       }
    }
    
-   
+   public int choicePrice(String startpoint, String endpoint, String busGrade) {
+		int price = 0;
+		
+		ArrayList<TimeTableVO> timeTableList = timetableDao.selectTimeTableList();
+		for(int i=0; i<timeTableList.size(); i++){
+			if(timeTableList.get(i).getStartPoint().equals(startpoint) && timeTableList.get(i).getEndPoint().equals(endpoint)){
+				price = timeTableList.get(i).getPrice(); 
+			}
+		}
+		
+		if(busGrade.equals("우등")){
+			price += 3000;
+		}else if(busGrade.equals("프리미엄")){
+			price += 4000;
+		}
+
+		return price;
+	}
    
    public void ReservationListByUser() { //user별 예약 목록 보기 (user용)
       ArrayList<ReservationVO> reservationList = reservationDao.selectReservationList();
@@ -173,12 +191,12 @@ private static ReservationService  instance;
       ArrayList<BusVO> busList = busDao.selectBusList();
       
       System.out.println("-----------------------------------------------------------------------");
-      System.out.println("예약번호\t좌석번호\t유저아이디\t날짜\t\t출발지\t도착지\t시간\t버스등급");
+      System.out.println("예약번호\t좌석번호\t유저아이디\t날짜\t\t금액\t출발지\t도착지\t시간\t버스등급");
       
       for(int i= reservationList.size() -1; 0<= i; i--){
          ReservationVO reservation = reservationList.get(i);
          if(Session.loginUser.getId().equals(reservation.getUserId())){
-            System.out.print(i+1+"\t"+reservation.getSeatNumber()+"\t"+reservation.getUserId()+"\t"+reservation.getDate());
+            System.out.print(i+1+"\t"+reservation.getSeatNumber()+"\t"+reservation.getUserId()+"\t"+reservation.getDate()+"\t"+reservation.getPrice());
             for(int j=0; j<timetableList.size(); j++){
                if(reservation.getTimeTableId().equals(timetableList.get(j).getTimeTableId())){
                   for(int k=0; k<busList.size(); k++){
@@ -201,10 +219,10 @@ private static ReservationService  instance;
       ArrayList<TimeTableVO> timetableList = timetableDao.selectTimeTableList();
       ArrayList<BusVO> busList = busDao.selectBusList();
       System.out.println("-----------------------------------------------------------------------");
-      System.out.println("번호\t좌석번호\t유저아이디\t날짜\t\t출발지\t도착지\t시간\t버스등급");
+      System.out.println("번호\t좌석번호\t유저아이디\t날짜\t\t금액\t출발지\t도착지\t시간\t버스등급");
       for(int i= reservationList.size() -1; 0<= i; i--){
          ReservationVO reservation = reservationList.get(i);
-         System.out.print(i+1+"\t"+reservation.getSeatNumber()+"\t"+reservation.getUserId()+"\t"+reservation.getDate());
+         System.out.print(i+1+"\t"+reservation.getSeatNumber()+"\t"+reservation.getUserId()+"\t"+reservation.getDate()+"\t"+reservation.getPrice());
          for(int j=0; j<timetableList.size(); j++){
             if(reservation.getTimeTableId().equals(timetableList.get(j).getTimeTableId())){
                for(int k=0; k<busList.size(); k++){
@@ -449,7 +467,9 @@ private static ReservationService  instance;
 		ArrayList<SeatVO> seatList = seatDao.selectSeatTableList();
 		ArrayList<TimeTableVO> timetableList = timetableDao.selectTimeTableList();
 		
-			System.out.println("인덱스 \t 예약날짜 \t\t 좌석번호  \t버스아이디 \t출발지 \t도착지 \t시간");
+		//예약번호\t좌석번호\t유저아이디\t날짜\t\t금액\t출발지\t도착지\t시간\t버스등급
+		
+			System.out.println("인덱스\t예약날짜\t\t좌석번호\t버스아이디\t출발지\t도착지\t시간\t금액");
 			Scanner s = new Scanner(System.in);
 			
 			
@@ -458,7 +478,7 @@ private static ReservationService  instance;
 				System.out.print(i+"\t"+reservation.getDate()+"\t"+reservation.getSeatNumber()+"\t");
 				for(int j=0; j<timetableList.size(); j++){
 					if(reservationList.get(i).getTimeTableId().equals(timetableList.get(j).getTimeTableId())){
-						System.out.println(timetableList.get(j).getBusId()+"\t"+timetableList.get(j).getStartPoint()+"\t"+timetableList.get(j).getEndPoint()+"\t"+timetableList.get(j).getTime());
+						System.out.println(timetableList.get(j).getBusId()+"\t"+timetableList.get(j).getStartPoint()+"\t"+timetableList.get(j).getEndPoint()+"\t"+timetableList.get(j).getTime()+"\t"+timetableList.get(j).getPrice());
 					}
 				}
 			}
@@ -475,9 +495,7 @@ private static ReservationService  instance;
 		
 		
 	}
-   
-   
-   
+
    
 }
       
